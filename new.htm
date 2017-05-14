@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<title>country game</title>
+</head>
+<body>
+<main id="country">
+	<img src="img/hero/chipolino.png" alt="Чиполино" id="chipolino">
+    <img src="img/city-1.png" alt="" id="city-1" class="town first-line" data-distance="0.7">
+    <img src="img/city_cleanness/city_cleanness.png" alt="" id="city_cleanness" class="town second-line" name="cleanness" data-distance="0.8">
+    <img src="img/city_useful-habits/city_useful-habits.png" alt="" id="city_useful-habits" class="town second-line" name="usefulHabits" data-distance="0.5">
+    <img src="img/city_amazing-people/city_amazing-people.png" alt="" id="city_amazing-people" class="town second-line" name="amazingPeople" data-distance="0.7">
+    <img src="img/city-5.png" alt="" id="city-5" class="town first-line" data-distance="0.6">
+    <img src="img/city-6.png" alt="" id="city-6" class="town first-line" data-distance="0.8">
+    <img src="img/city-7.png" alt="" id="city-7" class="town second-line" data-distance="0.6">
+	<div id="in-town" class="close">
+		<div id="mode-town">
+			<div class="controls">
+				<img src="img/exit.png" alt="Выход" class="exit"></img>
+				<img src="img/back.png" alt="Назад" class="arrow back close"></img>
+				<img src="img/back.png" alt="Назад" class="arrow next close"></img>
+			</div>
+			<div id="progress"></div>
+			<main id="game-area">
+			</main>
+		</div>
+	</div>
+</main>
+<script src="js/materials.js"></script>
+<script src="js/logic.js"></script>
+</body>
+</html>

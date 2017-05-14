@@ -1,0 +1,779 @@
+@font-face{
+	font-family:'Ruslan Display';
+	src: url(../fonts/RuslanDisplay.ttf);
+}
+@keyframes cityName{
+	0%{
+		text-shadow:1px 1px 10px gray;
+		color: gray;
+	}
+	50%{
+		text-shadow:3px 3px 10px orange;
+	}
+	100%{
+		text-shadow:3px 3px 20px yellow;
+	}
+}
+@keyframes gameEnd{
+	0%{
+		border:dashed yellow;
+	}
+	50%{
+		border-color:dotted orange;
+	}
+	100%{
+		border-color:dashed green;
+	}
+}
+@keyframes refresh{
+	25%{
+		transform:rotateZ(90deg);
+	}
+	50%{
+		transform:rotateZ(180deg);
+	}
+	75%{
+		transform:rotateZ(270deg);
+	}
+	100%{
+		transform:rotateZ(360deg);
+	}
+}
+html{
+	overflow:hidden;
+}
+body{
+	margin:0; padding:0;
+	width:100%;
+	height:100%;
+	background-color:#5CDF15;
+	font-family:'Ruslan Display';
+}
+
+#country{
+	background-image:url(../img/background-index.jpg);
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.town{
+	position:fixed;
+	opacity:0.8;
+	cursor:pointer;
+}
+.town:hover{
+ 	opacity:1;
+	cursor:pointer;
+}
+#chipolino{
+	position:fixed;
+	top:69%;
+	z-index:1;
+	height:30%;
+	width:10.6%;
+}
+.first-line{
+	z-index:1;
+}
+.second-line{
+	z-index:0;
+}
+#city-1{
+	left:50%;
+	bottom:35%;
+	height:20%;
+	width:15.6%;
+}
+#city_cleanness{
+	left:8%;
+	bottom:42%;
+	height:27%;
+	width:12.5%;
+}
+#city_useful-habits{
+	left:86%;
+	bottom:51%;
+	height:22%;
+	width:13.8%;
+}
+#city_amazing-people{
+	left:30%;
+	bottom:44%;
+	height:21%;
+	width:17%;
+}
+#city-5{
+	left:75.8%;
+	bottom:33%;
+	height:21%;
+	width:9.6%;
+}
+#city-6{
+	left:35%;
+	bottom:8%;
+	height:30%;
+	width:9.8%;
+}
+#city-7{
+	left:65%;
+	bottom:49%;
+	height:30%;
+	width:13.7%;
+}
+#in-town{
+	width:100%;
+	height:100%;
+	position:fixed;
+	background-color:rgba(127,127,127,0.85);
+	z-index:4;
+}
+	#mode-town{
+		width:90%;
+		height:95%;
+		margin:2% auto;
+		z-index:5;
+		opacity:0;
+		background-color:#9ffffe;
+		background-size:100% 100%;
+		background-repeat: no-repeat;
+		transform: scale(0);
+		position:relative;
+	}
+.close{
+	display:none;
+}
+.open{
+	display:block;
+}
+		.controls{
+			z-index:5;
+		}
+			.controls .exit{
+				z-index:1;
+				position:fixed;
+				top:2.5%;
+				right:2.5%;
+				height:7%;
+			}
+			.controls  .arrow{
+				z-index:1;
+				position:fixed;
+				top: 45%;
+				height:10%;
+			}
+			.arrow.back{
+				left:1%;
+			}
+			.arrow.next{
+				right:1%;
+				transform:scaleX(-1);
+			}
+			.controls .exit:hover, .controls .back:hover{
+				transform:scale(1.2);
+				cursor:pointer;
+			}
+			.controls .next:hover{
+				transform:scale(-1.2, 1.2);
+				cursor:pointer;
+			}
+		
+#progress{
+	position:fixed;
+	width:0;
+	height:1%;
+	background-image:linear-gradient(90deg, #363, #0f6);
+	z-index:1;
+}	
+
+#game-area{
+	width:100%;
+	height:100%;
+}	
+	.game-area-hero{
+		position:fixed;
+		bottom:1%;
+		left:1%;
+		height:40%;
+		width:15%;
+	}
+	
+.welcome-screen{
+	position:fixed;
+	height:30%;
+	width:14%;
+}
+	.welcome-screen-fone{
+		background-image:url(../img/welcome-screen-fone.jpg);
+		background-position:0% 100%;
+		background-repeat:no-repeat;
+		background-size: 100% auto;
+	}
+	.welcome-screen._0{
+		left:10%;	top:10%;
+	}
+	.welcome-screen._1{
+		right:10%;	top:10%;
+	}
+	.welcome-screen._2{
+		right:10%;	bottom:10%;
+	}
+	.welcome-screen._3{
+		left:1%;	bottom:1%;
+	}
+	.welcome-screen-city, .welcome-screen-button{
+		position:fixed;
+	}
+	.welcome-screen-city{
+		width:100%;
+		font-size: 4rem;
+		top: 40%;
+		text-align:center;
+		animation:cityName 2s ease infinite;
+		cursor:not-allowed;
+		user-select: none;
+	}
+	.welcome-screen-button{
+		background-color:green;
+		color:white;
+		border-radius:10%;
+		border: 5px solid white;
+		padding:1% 2%;
+		font-size: 5rem;
+	}
+	.welcome-screen-button:hover{
+		box-shadow:0 0 10px 10px white; 
+		cursor:pointer;
+	}
+
+.basket{
+	height:70%;
+	width:35%;
+	position:fixed;
+	top:15%;
+	left:20%;
+}
+	.basket-element{
+		height:33.3333%;
+		border:thin solid green;
+		margin: 2% 0;
+		border-radius:5%;
+		overflow:hidden;
+	}
+		.basket-element-cell{
+			width:50%;
+			height:100%;
+			float:left;
+		}
+			.basket-element-cell img{
+				width:100%;
+				height:100%;
+				display:block;
+			}
+
+.heap{
+	display:block;
+	height:23.34%;
+	width:17.5%;
+	position:fixed;
+	right:20%;
+	position:fixed;
+}
+	.heap:nth-of-type(1){
+		top:17%;
+	}
+	.heap:nth-of-type(2){
+		top:41%;
+	}
+	.heap:nth-of-type(3){
+		top:65%;
+	}
+	
+.selectedGame{
+	position:fixed;
+	height:20%;
+	width:15%;
+}
+	.selectedGame._0{
+		top:10%;
+		left:20%;
+	}
+	.selectedGame._1{
+		top:10%;
+		left:40%;
+	}
+	.selectedGame._2{
+		top:10%;
+		right:20%;
+	}
+	.selectedGame._3{
+		top:40%;
+		left:40%;
+	}
+	.selectedGame._4{
+		top:40%;
+		left:60%;
+	}
+	.selectedGame._5{
+		top:70%;
+		left:20%;
+	}
+	.selectedGame._6{
+		top:70%;
+		left:40%;
+	}
+	.selectedGame._7{
+		top:70%;
+		right:20%;
+	}
+
+.boy-party, .girl-party{
+	position:fixed;
+	z-index:1;
+}
+.anti-boy-party, .anti-girl-party{
+	position:fixed;
+	z-index:0;
+}
+	.boy-party._0{
+		height:17.4%;
+		width:5.76%;
+		top:10%;
+		left:20%;
+	}
+	.boy-party._1{
+		height:27%;
+		width:13.1673%;
+		top:10%;
+		left:40%;
+	}
+	.boy-party._2{
+		height:12%;
+		width:6.0836%;
+		top:70%;
+		left:40%;
+	}
+	.boy-party._3{
+		height:9.8%;
+		width:5.66%;
+		top:40%;
+		left:20%;
+	}
+	.boy-party._4{
+		height:20.5%;
+		width:5.2843%;
+		top:40%;
+		left:40%;
+	}
+	.boy-party._5{
+		height:20%;
+		width:5.4236%;
+		top:70%;
+		left:20%;
+	}
+	.anti-boy-party._-0{
+		height:17.4%;
+		width:5.76%;
+		top:46.3%;
+		right:23.4%;
+	}
+	.anti-boy-party._-1{
+		height:27%;
+		width:13.1673%;
+		top:20%;
+		right:20%;
+	}
+	.anti-boy-party._-2{
+		height:12%;
+		width:6.0836%;
+		top:46.5%;
+		right:27%;
+	}
+	.anti-boy-party._-3{
+		height:9.8%;
+		width:5.66%;
+		top:47%;
+		right:19.15%;
+	}
+	.anti-boy-party._-4{
+		height:20.5%;
+		width:5.2843%;
+		top:60%;
+		right:26.47%;
+	}
+	.anti-boy-party._-5{
+		height:20%;
+		width:5.4236%;
+		top:60%;
+		right:21.47%;
+	}
+	.girl-party._0{
+		height:17.4%;
+		width:5.3422%;
+		top:10%;
+		left:20%;
+	}
+	.girl-party._1{
+		height:27%;
+		width:21.8234%;
+		top:10%;
+		left:40%;
+	}
+	.girl-party._2{
+		height:12%;
+		width:5.7545%;
+		top:70%;
+		left:40%;
+	}
+	.girl-party._3{
+		height:9.8%;
+		width:5.5528%;
+		top:40%;
+		left:20%;
+	}
+	.girl-party._4{
+		height:20.5%;
+		width:3.314%;
+		top:40%;
+		left:40%;
+	}
+	.girl-party._5{
+		height:20%;
+		width:6.6072%;
+		top:70%;
+		left:20%;
+	}
+	.anti-girl-party._-0{
+		height:17.4%;
+		width:5.3422%;
+		top:40.9%;
+		right:23.4%;
+	}
+	.anti-girl-party._-1{
+		height:27%;
+		width:21.8234%;
+		top:15%;
+		right:15%;
+	}
+	.anti-girl-party._-2{
+		height:12%;
+		width:5.7545%;
+		top:42.6%;
+		right:18.9%;
+	}
+	.anti-girl-party._-3{
+		height:9.8%;
+		width:5.5528%;
+		top:42.66%;
+		right:28.3%;
+	}
+	.anti-girl-party._-4{
+		height:20.5%;
+		width:3.314%;
+		top:56%;
+		right:23.5%;
+	}
+	.anti-girl-party._-5{
+		height:20%;
+		width:6.6072%;
+		top:55.7%;
+		right:26.2%;
+	}
+
+.boy-face, .girl-face{
+	position:fixed;
+}
+	.boy-face._0{
+		height:80%;
+		width:40.9%;
+		left:28%;
+		top:10%;
+	}
+	.boy-face._1{
+		height:7.8%;
+		width:11.3831%;
+		left:44%;
+		top:82%;	
+	}
+	.boy-face._2{
+		height:15%;
+		width:25.3345%;
+		left:36.7%;
+		top:31.3%;
+	}
+	.boy-face._3{
+		height:19%;
+		width:37.11%;
+		left:29%;
+		top:11%;
+	}
+	.boy-face._4{
+		height:18%;
+		width:10.1852%;
+		left:34.2%;
+		top:66%;
+	}
+	.boy-face._5{
+		height:14%;
+		width:9.6%;
+		left:55.1%;
+		top:66%;
+	}
+	.boy-face._6{
+		height:15.4%;
+		width:2.8588%;
+		left:30.7%;
+		top:54.2%;
+	}
+	.boy-face._7{
+		height:16.2%;
+		width:2.878%;
+		left:65.8%;
+		top:53%;
+	}
+	.boy-face._8{
+		height:14.5%;
+		width:10.1%;
+		left:36%;
+		top:50%;
+	}
+	.boy-face._9{
+		height:14%;
+		width:9.685%;
+		left:53%;
+		top:50%;
+	}
+	.boy-face._10{
+		height:10%;
+		width:13.56%;
+		left:42.2%;
+		top:73.9%;
+	}
+	.boy-face._11{
+		height:6.3%;
+		width:6.82%;
+		left:46.25%;
+		top:65.5%;
+	}
+	.girl-face._0{
+		height:80%;
+		width:59.96%;
+		left:20%;
+		top:10%;
+	}
+	.girl-face._1{
+		height:4.4%;
+		width:8.21%;
+		left:46.7%;
+		top:84.5%;	
+	}
+	.girl-face._2{
+		height:8%;
+		width:4.4443%;
+		left:43.4%;
+		top:47%;
+	}
+	.girl-face._3{
+		height:34.46%;
+		width:59.98%;
+		left:20%;
+		top:10.2%;
+	}
+	.girl-face._4{
+		height:24.9%;
+		width:9.13%;
+		left:21.22%;
+		top:44.5%;
+	}
+	.girl-face._5{
+		height:25.65%;
+		width:9.056%;
+		left:69.7%;
+		top:44.2%;
+	}
+	.girl-face._6{
+		height:12.2%;
+		width:7.34%;
+		left:39%;
+		top:70.3%;
+	}
+	.girl-face._7{
+		height:10%;
+		width:6.2148%;
+		left:56%;
+		top:70%;
+	}
+	.girl-face._8{
+		height:12%;
+		width:2.066%;
+		left:35.8%;
+		top:61.6%;
+	}
+	.girl-face._9{
+		height:12.4%;
+		width:1.7533%;
+		left:64.3%;
+		top:61%;
+	}
+	.girl-face._10{
+		height:9%;
+		width:7.95%;
+		left:40.15%;
+		top:59.8%;
+	}
+	.girl-face._11{
+		height:8.8%;
+		width:7.656%;
+		left:53.7%;
+		top:60.4%;
+	}
+	.girl-face._12{
+		height:7.5%;
+		width:9.32%;
+		left:46.2%;
+		top:77.2%;
+	}
+	.girl-face._13{
+		height:6.7%;
+		width:4.663%;
+		left:48.6%;
+		top:69%;
+	}
+
+.family{
+	position:fixed;
+}
+	.family._0{
+		width:100%;
+		height:100%;
+		position:absolute;
+	}
+	.family._1{
+		height:60%;
+		width:16.17%;
+		bottom:0;
+		left:45%;
+	}
+	.family._2{
+		height:60%;
+		width:10.6174%;
+		bottom:0;
+		left:8%;
+	}
+	.family._3{
+		height:70%;
+		width:10.69%;
+		bottom:0;
+		left:65%;
+	}
+	.family._4{
+		height:70%;
+		width:18.2%;
+		bottom:0;
+		left:18%;
+	}
+	.family._5{
+		height:50%;
+		width:12.7541%;
+		bottom:22%;
+		left:35%;
+	}
+	.family._6{
+		height:60%;
+		width:18.5%;
+		bottom:0;
+		right:5%;
+	}
+	
+.lack{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lack{
+	margin:5% 10% 0 0;
+	
+}.lack:nth-of-type(odd){
+	margin-left:28%;
+	
+}
+
+.game-over{
+	position:fixed;
+	border-radius: 15px;
+	border:dashed 5px;
+	background-color:transparent;
+	padding:2%;
+	font-size: 5rem;
+	text-align:center;
+	animation:gameEnd 1s ease infinite;
+	user-select:none;
+	cursor:not-allowed;
+	z-index:2;
+}
+	.game-over-refresh{
+		height:10%;
+		width:21%;
+		text-align:center;
+		animation:refresh 2s ease infinite;
+		cursor:pointer;
+	}
+
+.accept{
+	box-shadow:0 0 10px 10px green;
+	border-radius: 5px;
+}
+.cancel{
+	box-shadow:0 0 10px 10px red;
+	border-radius: 5px;
+}
+
+@media screen and (min-width: 1441px){
+	html{
+		font-size:16px;
+	}
+	.welcome-screen-button{
+		bottom:25%;
+	}
+}
+@media screen and (max-width: 1440px){
+	html{
+		font-size:14px;
+	}
+	.welcome-screen-button{
+		bottom:20%;
+	}
+}
+@media screen and (max-width: 1280px){
+	html{
+		font-size:12px;
+	}
+	.welcome-screen-button{
+		bottom:15%;
+	}
+}
+@media screen and (max-width: 1024px){
+	html{
+		font-size:10px;
+	}
+	.welcome-screen-button{
+		bottom:10%;
+	}
+}
+@media screen and (max-width: 800px){
+	html{
+		font-size:8px;
+	}
+	.welcome-screen-button{
+		bottom:5%;
+	}
+}
+@media screen and (max-width: 640px){
+	html{
+		font-size:6px;
+	}
+	.welcome-screen-button{
+		bottom:1%;
+	}
+}
