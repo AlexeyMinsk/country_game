@@ -16,6 +16,7 @@ function GameLogic() {
     let frameCoords;
     let сellCoords = [];
     let cssSelector;
+    let curentScaleHero = 1;
 
     this.initialListener = function () {
 
@@ -41,12 +42,12 @@ function GameLogic() {
         }
 
         sound.playSound(sound.mainTheme, true);
+        sound.playSound(sound.welcomeContry);
     }//повесить обработчики на города
 
     function toTown(event) {//обработчик
 
         if(moved || city == event.target)   return;
-
         if(city)    city.style.zIndex = '';
         city = event.target;
         city.style.zIndex = 0;
@@ -54,7 +55,6 @@ function GameLogic() {
 
         function moveHero() {
 
-            let curentScaleHero = 1;
             let townCoords = city.getBoundingClientRect();
             let heroRoad = {};
             const step = 5;
@@ -63,15 +63,15 @@ function GameLogic() {
             heroRoad.left = hero.getBoundingClientRect().left;
 
             heroRoad.verticalDistance = heroRoad.top +  hero.offsetHeight - townCoords.bottom -
-                hero.offsetHeight / 2 * (1 - +city.dataset.distance);
+                hero.offsetHeight / 2 * (1 - city.dataset.distance);
             heroRoad.horizontalDistance = townCoords.left - heroRoad.left -
-                hero.offsetWidth / 2 * (1 - +city.dataset.distance);
+                hero.offsetWidth / 2 * (1 - city.dataset.distance);
             let counterStep = Math.abs(heroRoad.verticalDistance) > Math.abs(heroRoad.horizontalDistance) ?
                 heroRoad.verticalDistance / step : heroRoad.horizontalDistance / step;
             counterStep = Math.round(Math.abs(counterStep));
             heroRoad.verticalSpeed = heroRoad.verticalDistance / counterStep;
             heroRoad.horizontalSpeed = heroRoad.horizontalDistance / counterStep;
-            heroRoad.stepScale = (curentScaleHero - +city.dataset.distance) / counterStep;
+            heroRoad.stepScale = (curentScaleHero - city.dataset.distance) / counterStep;
 
             let stop = setInterval(() => {
                 if(!counterStep-- ) {//цикл закончен
@@ -108,7 +108,7 @@ function GameLogic() {
         frame.style.opacity = "";
         frame.style.transform = "";
         gameArea.innerHTML = "";
-        sound.played.pause();
+        sound.stopPlayed();
         sound.playSound(sound.creak);
         sound.playSound(sound.mainTheme, true);
     }
@@ -142,7 +142,7 @@ function GameLogic() {
     function gameOver(event) {
 
         paternGameOver(gameArea);
-        sound.playSound(sound.over);
+        sound.playSound(sound.getMark(true));
     }
 
     function gameLauncer() {
@@ -260,13 +260,13 @@ function GameLogic() {
                 gameArea.clientHeight * 100 + '%';
             movedImg.removeEventListener('mousedown', startDragAndDrop);
             movedImg.removeAttribute('draggable');
-            sound.playSound(sound.ok);
+            sound.playSound(sound.getMark(true));
             end();
         }else {
             movedImg.classList.remove('cancel');
             movedImg.style.left = '';
             movedImg.style.top = '';
-            sound.playSound(sound.cancel);
+            sound.playSound(sound.getMark());
         }
 
         movedImg.style.zIndex = '';

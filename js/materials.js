@@ -215,32 +215,42 @@ let sound = {
 
     mainTheme:'sound/main_theme.mp3',
 
-    ok: 'sound/смех.wav',
+    welcomeContry:'sound/voiceover/приветствие.ogg',
 
-    cancel: 'sound/Sound8635.mp3',
+    getMark: function (flag) {
+        let arrSounds = ['sound/voiceover/cancel_1.ogg', 'sound/voiceover/cancel_2.ogg',
+            'sound/voiceover/cancel_3.ogg', 'sound/voiceover/cancel_4.ogg', 'sound/voiceover/ok_1.ogg',
+            'sound/voiceover/ok_2.ogg', 'sound/voiceover/ok_3.ogg', 'sound/voiceover/ok_4.ogg'];
 
-    over: 'sound/no-no.wav',
+        let rand = Math.round(Math.random() * arrSounds.length/2);
+        if(flag)    rand += Math.round(arrSounds.length/2);
 
-    welcome:'sound/Sound8026.mp3',
+        return arrSounds[rand];
+    },
+
+    welcome:'sound/sound_city.mp3',
 
     creak:'sound/скрип.mp3',
 
-    played: null,
+    played: [],
 
     playSound: function (what, flag) {
         let audio = document.createElement('audio');
         audio.src = what;
         audio.play();
+        sound.played.push(audio);
 
         if(flag) {
             audio.loop = 'true';
-            audio.volume = 0.5;
-            sound.played = audio;
+            audio.volume = 0.8;
         }
     },
 
     stopPlayed: function () {
-        sound.played.pause();
+        sound.played.forEach(function (item) {
+            item.pause();
+        });
+        sound.played.length = 0;
     }
 }
 
@@ -252,7 +262,7 @@ function paternWelcomeScreen(to, city) {
 
         //usefulHabits:[],
 
-        amazingPeople:['img/city_amazing-people/game_3/face.png', 'img/city_amazing-people/game_7/daughter.png',
+        amazingPeople:['img/city_amazing-people/game_3/face.png', 'img/city_amazing-people/game_2/head.png',
             'img/city_amazing-people/game_5/hands.png', 'img/hero/chipolino.png']
 
     }
@@ -353,14 +363,14 @@ function paternGameSelected(to){
         if(event.target.hasAttribute('good')) {
             event.target.classList.add('accept');
             this.counter++;
-            sound.playSound(sound.ok);
+            sound.playSound(sound.getMark(true));
 
             if(this.counter == this.correct.length)
                 to.dispatchEvent(new CustomEvent('gameover'));
         }
         else {
             event.target.classList.add('cancel');
-            sound.playSound(sound.cancel);
+            sound.playSound(sound.getMark());
         }
     }
 }
@@ -487,10 +497,10 @@ function handlerShowItems(event) {
     if(flag){
         alert('Молодец!');
         this.counter++;
-        sound.playSound(sound.ok);
+        sound.playSound(sound.getMark(true));
     }else{
         alert('Попробуй ещё раз!');
-        sound.playSound(sound.cancel);
+        sound.playSound(sound.getMark());
     }
 
     if(this.counter < this.query.length)    query.call(this);
