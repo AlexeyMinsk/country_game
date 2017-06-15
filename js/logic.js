@@ -109,7 +109,6 @@ function GameLogic() {
         frame.style.transform = "";
         gameArea.innerHTML = "";
         sound.stopPlayed();
-        sound.playSound(sound.creak);
         sound.playSound(sound.mainTheme, true);
     }
 
@@ -142,7 +141,6 @@ function GameLogic() {
     function gameOver(event) {
 
         paternGameOver(gameArea);
-        sound.playSound(sound.getMark(true));
     }
 
     function gameLauncer() {
@@ -275,8 +273,8 @@ function GameLogic() {
 
         function end() {
 
-            let name = city.getAttribute('name');
-            let game = materials[name][materials.numberGame];
+            //let name = city.getAttribute('name');
+            //let game = materials[name][materials.numberGame];
 
             if(!(gameArea.querySelector('[draggable]')))
                 gameArea.dispatchEvent(new CustomEvent('gameover'));

@@ -215,22 +215,27 @@ let sound = {
 
     mainTheme:'sound/main_theme.mp3',
 
-    welcomeContry:'sound/voiceover/приветствие.ogg',
+    welcomeContry:'sound/voiceover/приветствие.mp3',
 
     getMark: function (flag) {
-        let arrSounds = ['sound/voiceover/cancel_1.ogg', 'sound/voiceover/cancel_2.ogg',
-            'sound/voiceover/cancel_3.ogg', 'sound/voiceover/cancel_4.ogg', 'sound/voiceover/ok_1.ogg',
-            'sound/voiceover/ok_2.ogg', 'sound/voiceover/ok_3.ogg', 'sound/voiceover/ok_4.ogg'];
+        let accept = ['sound/voiceover/ok_1.mp3', 'sound/voiceover/ok_2.mp3', 'sound/voiceover/ok_3.mp3',
+            'sound/voiceover/ok_4.mp3'];
 
-        let rand = Math.round(Math.random() * arrSounds.length/2);
-        if(flag)    rand += Math.round(arrSounds.length/2);
+        let cancel =  ['sound/voiceover/cancel_1.mp3', 'sound/voiceover/cancel_2.mp3', 'sound/voiceover/cancel_3.mp3',
+            'sound/voiceover/cancel_4.mp3'];
 
-        return arrSounds[rand];
+        let random;
+
+        if(flag) {
+            random = Math.random() * (accept.length - 1);
+            return accept[Math.round(random)];
+        } else {
+            random = Math.random() * (cancel.length - 1);
+            return cancel[Math.round(random)];
+        }
     },
 
     welcome:'sound/sound_city.mp3',
-
-    creak:'sound/скрип.mp3',
 
     played: [],
 
@@ -699,4 +704,3 @@ function handlerShowItems(event) {
         }
     }
 }
-
