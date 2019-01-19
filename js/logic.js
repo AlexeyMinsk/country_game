@@ -40,9 +40,10 @@ function GameLogic() {
         document.body.onresize = () => {
             document.body.style.height = document.documentElement.clientHeight + 'px';
         }
-
-        sound.playSound(sound.mainTheme, true);
-        sound.playSound(sound.welcomeContry);
+        document.addEventListener('mousemove', () => {
+            sound.playSound(sound.mainTheme, true);
+            sound.playSound(sound.welcomeContry);
+        }, {once:true});
     }//повесить обработчики на города
 
     function toTown(event) {//обработчик
@@ -127,7 +128,7 @@ function GameLogic() {
                 clearInterval(stop);
                 frameCoords = frame.getBoundingClientRect();
             }
-        },20);
+        }, 20);
 
         welcomeScreen();
     }
@@ -155,7 +156,10 @@ function GameLogic() {
         progress.style.width = materials.numberGame / (materials[nameCity].length - 1) * 100 +'%';
         let objData = materials[nameCity][materials.numberGame];
 
-        cssSelector = objData.patern(gameArea);
+        cssSelector = objData.patern(gameArea, {
+			imagesCount: objData.images.length,
+			basketCount: objData.basket || 3
+		});
         addEventMousedown();
     }
 
@@ -180,20 +184,22 @@ function GameLogic() {
     function addEventMousedown() {
 
         let DnD_element = gameArea.querySelectorAll('[draggable]');
-
+		
         for(let i = 0; i < DnD_element.length; i++){
             DnD_element[i].addEventListener('mousedown', startDragAndDrop);
         }
     }
 
     function startDragAndDrop(event) {//вешает обработчики mousemove, mouseup определяет movedImg фиксирует сдвиг
-
+		
         movedImg = event.target;
+		checkMovedImg(movedImg);
         movedImg.style.zIndex = '1';
         movedImg.ondragstart = () => false;
         movedImgCoords = movedImg.getBoundingClientRect();
 
         let cells = gameArea.querySelectorAll(cssSelector);
+		
         for(let i = 0; i < cells.length; i++) {
             сellCoords[i] = cells[i].getBoundingClientRect();
         }
@@ -214,7 +220,7 @@ function GameLogic() {
     }
 
     function checkPosition() {
-
+		
         const areal = 20;
 
         for(let i = 0; i < сellCoords.length; i++) {
@@ -257,13 +263,14 @@ function GameLogic() {
             movedImg.style.top = (сellCoords[сellCoords.key].top - frameCoords.top) /
                 gameArea.clientHeight * 100 + '%';
             movedImg.removeEventListener('mousedown', startDragAndDrop);
-            movedImg.removeAttribute('draggable');
+            movedImg.removeAttribute('data-key');
             sound.playSound(sound.getMark(true));
             end();
         }else {
             movedImg.classList.remove('cancel');
             movedImg.style.left = '';
             movedImg.style.top = '';
+			checkMovedImg(movedImg, 'cancel');
             sound.playSound(sound.getMark());
         }
 
@@ -273,13 +280,26 @@ function GameLogic() {
 
         function end() {
 
-            //let name = city.getAttribute('name');
-            //let game = materials[name][materials.numberGame];
-
-            if(!(gameArea.querySelector('[draggable]')))
+            if(!(gameArea.querySelector('[data-key]')))
                 gameArea.dispatchEvent(new CustomEvent('gameover'));
         }
     }
+	
+	function checkMovedImg(img, act = "start"){
+	
+		if(img.dataset.heap == 5 || img.dataset.heap == 4){
+			if(act == "start"){
+				img.classList.add("heap3-size");
+				img.classList.remove("heap5-size");
+				img.classList.remove("heap4-size");
+				
+			}
+			else if(act == "cancel"){
+				img.classList.add("heap" + img.dataset.heap + "-size");
+				img.classList.remove("heap3-size");
+			}
+		}
+	}
 };
 
 let game = new GameLogic();

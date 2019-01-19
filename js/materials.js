@@ -6,8 +6,8 @@ let materials = {
         {//1 игра
             patern: paternPuzzle,
 
-            images: ['img/city_cleanness/game_1/0.png', 'img/city_cleanness/game_1/1.png',
-                'img/city_cleanness/game_1/2.png'],
+            images: ['img/city_cleanness/game_1/0.gif', 'img/city_cleanness/game_1/1.jpg',
+                'img/city_cleanness/game_1/2.jpg'],
 
             AcceptImg: ['img/city_cleanness/game_1/3.png', 'img/city_cleanness/game_1/4.png',
                 'img/city_cleanness/game_1/5.png'],
@@ -17,26 +17,154 @@ let materials = {
         {//2 игра
             patern: paternGameSelected,
 
-            images: ['img/city_cleanness/game_2/1.png', 'img/city_cleanness/game_1/0.png',
-                'img/city_cleanness/game_1/0.png', 'img/city_cleanness/game_2/1.png',
-                'img/city_cleanness/game_2/1.png', 'img/city_cleanness/game_2/1.png',
-                'img/city_cleanness/game_2/1.png', 'img/city_cleanness/game_2/1.png'],
+            images: ['img/city_cleanness/game_2/0.jpg', 'img/city_cleanness/game_2/1.jpg',
+                'img/city_cleanness/game_2/2.png', 'img/city_cleanness/game_2/3.jpg',
+                'img/city_cleanness/game_2/4.png', 'img/city_cleanness/game_2/5.jpg'],
 
-            correct: [2, 1]
+            correct: [2]
+        },
+		{//3 игра
+            patern: paternGameSelected,
+
+            images: ['img/city_cleanness/game_3/0.jpg', 'img/city_cleanness/game_3/1.png',
+                'img/city_cleanness/game_3/2.jpg', 'img/city_cleanness/game_3/3.jpg',
+                'img/city_cleanness/game_3/4.png', 'img/city_cleanness/game_3/5.png'],
+
+            correct: [2, 3, 5]
+        },
+		{//4 игра
+            patern: paternGameSelected,
+
+            images: ['img/city_cleanness/game_4/0.jpg', 'img/city_cleanness/game_4/1.jpg',
+                'img/city_cleanness/game_4/2.jpg', 'img/city_cleanness/game_4/3.jpg',
+                'img/city_cleanness/game_4/4.jpg', 'img/city_cleanness/game_4/5.jpg'],
+
+            correct: [1]
+        },
+		{//5 игра
+            patern: paternGameSelected,
+
+            images: ['img/city_cleanness/game_5/0.jpg', 'img/city_cleanness/game_5/1.png',
+                'img/city_cleanness/game_5/2.png', 'img/city_cleanness/game_5/3.png',
+                'img/city_cleanness/game_5/4.png', 'img/city_cleanness/game_5/5.png'],
+
+            correct: [1, 2, 5]
         }
     ],
     usefulHabits:[
-        {
+        {//1
             patern: paternGameSelected,
 
             counter: 0,
 
-            images: ['img/city_useful-habits/game_1/cabbage.png', 'img/city_useful-habits/game_1/candy.png',
-                'img/city_useful-habits/game_1/chocolate.png', 'img/city_useful-habits/game_1/ice-cream.jpg',
-                'img/city_useful-habits/game_1/marmalade.png', 'img/city_useful-habits/game_1/orange.png',
-                'img/city_useful-habits/game_1/potato.png', 'img/city_useful-habits/game_1/tomato.png'],
+            images: [
+				'img/city_useful-habits/game_1/0.jpg', 'img/city_useful-habits/game_1/1.jpg',
+				'img/city_useful-habits/game_1/2.jpg', 'img/city_useful-habits/game_1/3.jpg',
+				'img/city_useful-habits/game_1/4.jpg', 'img/city_useful-habits/game_1/5.jpg'
+			],
 
-            correct: [0, 5, 6, 7]
+            correct: [0, 5]
+        },
+		{//2
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_2/0.jpg', 'img/city_useful-habits/game_2/1.jpg',
+				'img/city_useful-habits/game_2/2.jpg'
+			],
+
+            correct: [1]
+        },
+		{//3
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_3/0.jpg', 'img/city_useful-habits/game_3/1.jpg',
+				'img/city_useful-habits/game_3/2.jpg', 'img/city_useful-habits/game_3/3.jpg',
+				'img/city_useful-habits/game_3/4.jpg', 'img/city_useful-habits/game_3/5.jpg'
+			],
+
+            correct: [1, 4, 5]
+        },
+		{//4
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_4/0.png', 'img/city_useful-habits/game_4/1.jpg',
+				'img/city_useful-habits/game_4/2.png', 'img/city_useful-habits/game_4/3.jpg',
+				'img/city_useful-habits/game_4/4.png', 'img/city_useful-habits/game_4/5.png'
+			],
+
+            correct: [1, 2, 5]
+        },
+		{//5
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_5/0.jpg', 'img/city_useful-habits/game_5/1.jpg',
+				'img/city_useful-habits/game_5/2.png', 'img/city_useful-habits/game_5/3.jpg',
+				'img/city_useful-habits/game_5/4.jpg', 'img/city_useful-habits/game_5/5.jpg'
+			],
+
+            correct: [0, 1, 3, 4]
+        },
+		{//6
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_6/0.jpg', 'img/city_useful-habits/game_6/1.jpg',
+				'img/city_useful-habits/game_6/2.jpg', 'img/city_useful-habits/game_6/3.jpg',
+				'img/city_useful-habits/game_6/4.jpg', 'img/city_useful-habits/game_6/5.jpg'
+			],
+
+            correct: [0, 3, 5]
+        },
+		{//7
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_7/0.jpg', 'img/city_useful-habits/game_7/1.jpg'
+			],
+
+            correct: [0]
+        },
+		{//8
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_8/0.jpg', 'img/city_useful-habits/game_8/1.jpg',
+				'img/city_useful-habits/game_8/2.jpg', 'img/city_useful-habits/game_8/3.jpg',
+				'img/city_useful-habits/game_8/4.jpg', 'img/city_useful-habits/game_8/5.jpg'
+			],
+
+            correct: [0, 1, 3]
+        },
+		{//9
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_useful-habits/game_9/0.png', 'img/city_useful-habits/game_9/1.jpg',
+				'img/city_useful-habits/game_9/2.jpg', 'img/city_useful-habits/game_9/3.jpg',
+				'img/city_useful-habits/game_9/4.jpg', 'img/city_useful-habits/game_9/5.jpg'
+			],
+
+            correct: [0, 1, 2, 3, 4, 5]
         }
     ],
     amazingPeople:[
@@ -152,7 +280,7 @@ let materials = {
 
             images: ['img/city_amazing-people/game_8/boy-1.png', 'img/city_amazing-people/game_8/girl-1.png',
                 'img/city_amazing-people/game_8/boy-2.png', 'img/city_amazing-people/game_8/girl-2.png']
-        },
+        }/*,
         {//1
             patern: paternShowItems,
 
@@ -207,15 +335,214 @@ let materials = {
                 'img/city_amazing-people/game_7/grandmother.png', 'img/city_amazing-people/game_7/dad.png',
                 'img/city_amazing-people/game_7/mother.png', 'img/city_amazing-people/game_7/son.png',
                 'img/city_amazing-people/game_7/daughter.png']
+        }*/
+    ],
+	security:[
+		  {//1
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_1/0.jpg', 'img/city_security/game_1/1.jpg',
+				'img/city_security/game_1/2.jpg', 'img/city_security/game_1/3.png',
+				'img/city_security/game_1/4.jpg', 'img/city_security/game_1/5.jpg'
+			],
+
+            correct: [0, 2, 5]
+        },
+		{//2
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_2_3/0.png', 'img/city_security/game_2_3/1.jpg',
+				'img/city_security/game_2_3/2.jpg'
+			],
+
+            correct: [0]
+        },
+		{//3
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_2_3/0.png', 'img/city_security/game_2_3/1.jpg',
+				'img/city_security/game_2_3/2.jpg'
+			],
+
+            correct: [2]
+        },
+		{//4
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_4/0.png', 'img/city_security/game_4/1.jpg',
+				'img/city_security/game_4/2.png', 'img/city_security/game_4/3.png',
+				'img/city_security/game_4/4.png', 'img/city_security/game_4/5.jpg'
+			],
+
+            correct: [0, 1, 2, 3, 4]
+        },
+		{//5
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_5/0.png', 'img/city_security/game_5/1.jpg',
+				'img/city_security/game_5/2.jpg', 'img/city_security/game_5/3.png',
+				'img/city_security/game_5/4.png', 'img/city_security/game_5/5.png'
+			],
+
+            correct: [1, 2, 5]
+        },
+		{//6
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_6/0.jpg', 'img/city_security/game_6/1.jpg',
+				'img/city_security/game_6/2.jpg', 'img/city_security/game_6/3.jpg',
+				'img/city_security/game_6/4.jpg', 'img/city_security/game_6/5.jpg'
+			],
+
+            correct: [1, 2, 3, 4]
+        },
+		{//7
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_security/game_7/0.jpg', 'img/city_security/game_7/1.jpg',
+				'img/city_security/game_7/2.jpg', 'img/city_security/game_7/3.jpg',
+				'img/city_security/game_7/4.jpg', 'img/city_security/game_7/5.jpg'
+			],
+            correct: [0,1 ,2, 3, 5]
         }
-    ]
+	],
+	friendship:[
+		{//1
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_1/0.jpg']
+        },
+		{//2
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_2/0.jpg']
+        },
+		{//3
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_3/0.jpg']
+        },
+		{//4
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_4/0.png']
+        },
+		{//5
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_5/0.jpg']
+        },
+		{//6
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_friendship/game_6/0.jpg']
+        }
+		
+	],
+	assistants:[
+		{//1
+            patern: paternWithoutInteraction,
+
+            hero: 'img/hero/Neznajka.png',
+
+            selector: 'one-image',
+
+            images: ['img/city_assistants/game_1/0.jpg']
+        },
+		{//2
+            patern: paternGameSelected,
+
+            counter: 0,
+
+            images: [
+				'img/city_assistants/game_2/0.jpg', 'img/city_assistants/game_2/1.jpg',
+				'img/city_assistants/game_2/2.jpg', 'img/city_assistants/game_2/3.jpg',
+				'img/city_assistants/game_2/4.jpg', 'img/city_assistants/game_2/5.jpg'
+			],
+
+            correct: [0, 1, 3, 4, 5]
+        }
+	],
+	"self-service":[
+		{//1
+            patern: paternPuzzle,
+			
+			basket: 1,
+			
+            images: ['img/city_self-service/game_1/0.jpg'],
+
+            AcceptImg: [
+				'img/city_self-service/game_1/5.jpg', 'img/city_self-service/game_1/1.jpg',
+                'img/city_self-service/game_1/2.jpg', 'img/city_self-service/game_1/3.jpg',
+				'img/city_self-service/game_1/4.jpg'
+			],
+
+            keyValue: [1]
+        },
+        {//2
+            patern: paternGameSelected,
+
+            images: [
+				'img/city_self-service/game_2/0.jpg', 'img/city_self-service/game_2/1.jpg',
+                'img/city_self-service/game_2/2.jpg', 'img/city_self-service/game_2/3.jpg',
+                'img/city_self-service/game_2/4.jpg', 'img/city_self-service/game_2/5.jpg'
+			],
+
+            correct: [5]
+        }
+	]
 }
 
 let sound = {
 
     mainTheme:'sound/main_theme.mp3',
 
-    welcomeContry:'sound/voiceover/приветствие.mp3',
+    welcomeContry:'sound/voiceover/welc.mp3',
 
     getMark: function (flag) {
         let accept = ['sound/voiceover/ok_1.mp3', 'sound/voiceover/ok_2.mp3', 'sound/voiceover/ok_3.mp3',
@@ -241,8 +568,21 @@ let sound = {
 
     playSound: function (what, flag) {
         let audio = document.createElement('audio');
+        document.body.appendChild(audio);
         audio.src = what;
-        audio.play();
+        let playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Automatic playback started!
+                // Show playing UI.
+            })
+                .catch(error => {
+                    // Auto-play was prevented
+                    // Show paused UI.
+                    console.log('error', error);
+                });
+        }
         sound.played.push(audio);
 
         if(flag) {
@@ -262,6 +602,7 @@ let sound = {
 function paternWelcomeScreen(to, city) {
 
     let cityAttributeName = city.getAttribute('name');
+	
     let deco = {
         //cleanness:[],
 
@@ -302,58 +643,121 @@ function paternWelcomeScreen(to, city) {
             case 'cleanness':
                 return 'Город Чистоты';
             case 'usefulHabits':
-                return 'Город Полезных Привычек';
+                return 'Город Бережливости';
             case 'amazingPeople':
                 return 'Город Удивительных Людей';
+			case 'security':
+                return 'Город Безопасности';
             default:
                 return 'Секретный Город';
         }
     }
 }
 
-function paternPuzzle(to) {
+function paternPuzzle(to, options) {
 
-    let basket = document.createElement('div');
-    basket.classList.add('basket');
-    to.appendChild(basket);
-
-    for(let i = 0; i < 3; i++){
-        let basketElement = document.createElement('div');
-        basketElement.classList.add('basket-element');
-        basket.appendChild(basketElement);
-
-        for(let o = 0; o < 2; o++){
-            let cell = document.createElement('div');
-            cell.classList.add('basket-element-cell');
-            basketElement.appendChild(cell);
-        }
-
-        let img = document.createElement('img');
-        img.src = this.images[i];
-        basketElement.childNodes[0].appendChild(img);
-
-        let heapImg = document.createElement('img');
-        heapImg.src = this.AcceptImg[i];
-        heapImg.setAttribute('data-key', this.keyValue[i]);
-        heapImg.classList.add('heap');
-        heapImg.setAttribute('draggable', '');
-        to.appendChild(heapImg);
-    }
+	paternPuzzleObj = {
+		"3": createPuzzle3x3,
+		"1": createPuzzle5x1,
+		"4": createPuzzle4x4,
+		__proto__: this
+	}
+	
+    let selector = paternPuzzleObj[options.basketCount]();
 
     addHero.call(this, to);
 
-    return '.basket-element-cell:nth-of-type(even)';
+    return selector;
+	
+	function createPuzzle3x3(){
+		
+		let basket = document.createElement('div');
+		basket.classList.add('basket');
+		to.appendChild(basket);
+
+		for(let i = 0; i < 3; i++){
+			let basketElement = document.createElement('div');
+			basketElement.classList.add('basket3x3-element');
+			basket.appendChild(basketElement);
+	
+			for(let o = 0; o < 2; o++){
+				let cell = document.createElement('div');
+				cell.classList.add('basket3x3-element-cell');
+				basketElement.appendChild(cell);
+			}
+	
+			let img = document.createElement('img');
+			img.src = this.images[i];
+			basketElement.childNodes[0].appendChild(img);
+	
+			let heapImg = document.createElement('img');
+			heapImg.src = this.AcceptImg[i];
+			heapImg.setAttribute('data-key', this.keyValue[i]);
+			heapImg.classList.add('heap3');
+			heapImg.classList.add('heap');
+			heapImg.classList.add('heap3-size');
+			heapImg.dataset.heap = 3;
+			heapImg.setAttribute('draggable', '');
+			to.appendChild(heapImg);
+		}
+		return '.basket3x3-element-cell:nth-of-type(even)';
+	}
+	
+	function createPuzzle5x1() {
+	
+		let basket = document.createElement('div');
+		basket.classList.add('basket');
+		to.appendChild(basket);
+
+		let basketElement = document.createElement('div');
+		basketElement.classList.add('basket5x1-element');
+		basket.appendChild(basketElement);
+	
+		for(let o = 0; o < 2; o++){
+			let cell = document.createElement('div');
+			cell.classList.add('basket5x1-element-cell');
+			basketElement.appendChild(cell);
+		}
+	
+		let img = document.createElement('img');
+		img.src = this.images[0];
+		basketElement.childNodes[0].appendChild(img);
+	
+		for(let i = 0; i < 5; i++){
+			let heapImg = document.createElement('img');
+			heapImg.src = this.AcceptImg[i];
+
+			if(this.keyValue[0] === i)
+				heapImg.setAttribute('data-key', '0');
+			
+			heapImg.classList.add('heap5');
+			heapImg.classList.add('heap');
+			heapImg.classList.add('heap5-size');
+			heapImg.dataset.heap = 5;
+			heapImg.setAttribute('draggable', '');
+			to.appendChild(heapImg);
+		}
+		return '.basket5x1-element-cell:nth-of-type(even)';
+	}
+	
+	function createPuzzle4x4(){
+	
+	}
 }
 
-function paternGameSelected(to){
+function paternGameSelected(to, options){
 
+	imageCount = options.imagesCount;
     this.counter = 0;
-
-    for(let i = 0; i < 8; i++){
+	let div = document.createElement('div');
+	div.className = 'selectedGame wrapper';
+	to.appendChild(div);
+	
+    for(let i = 0; i < imageCount; i++){
         let elem = document.createElement('img');
         elem.src = this.images[i];
         elem.className = 'selectedGame _' + i;
-        to.appendChild(elem);
+        div.appendChild(elem);
         elem.addEventListener('click', checkSelected.bind(this));
 
         for(let n = 0; n < this.correct.length; n++)
@@ -500,12 +904,12 @@ function handlerShowItems(event) {
     }
 
     if(flag){
-        alert('Молодец!');
-        this.counter++;
         sound.playSound(sound.getMark(true));
+        //alert('Молодец!');
+        this.counter++;
     }else{
-        alert('Попробуй ещё раз!');
         sound.playSound(sound.getMark());
+        //alert('Попробуй ещё раз!');
     }
 
     if(this.counter < this.query.length)    query.call(this);
