@@ -3,50 +3,108 @@
 <head>
 	<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>country game</title>
+	<title>Country game</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="js/materials.js"></script>
+	<script src="js/logic.js"></script>
 </head>
 <body>
 <main id="country">
 	<img src="img/hero/chipolino.png" alt="Чиполино" id="chipolino">
-	
-	<div class="town-wrapper">
-		<!--<img src="img/city_friendship/friendship.png" alt="" id="city_name_friendship" class="city_name">-->
-		<img src="img/city_friendship/city-1.png" alt="" id="city_friendship" class="town first-line" name="friendship" data-distance="0.7">
-	</div>
-	<div class="town-wrapper">
-		<!--<img src="img/city_cleanness/cleanness.png" alt="" id="city_name_cleannes" class="city_name">-->
-		<img src="img/city_cleanness/city_cleanness.png" alt="" id="city_cleanness" class="town second-line" name="cleanness" data-distance="0.8">
-	</div>
-	<div class="town-wrapper">
-		<img src="img/city_useful-habits/city_useful-habits.png" alt="" id="city_useful-habits" class="town second-line" name="usefulHabits" data-distance="0.5">
-	</div>
-	<div class="town-wrapper">
-		<img src="img/city_amazing-people/city_amazing-people.png" alt="" id="city_amazing-people" class="town second-line" name="amazingPeople" data-distance="0.7">
-	</div>
-	<div class="town-wrapper">
-		<img src="img/city_self-service/city-5.png" alt="" id="city_self-service" class="town first-line" name="self-service" data-distance="0.6">
-	</div>
-	<div class="town-wrapper">
-		<img src="img/city_assistants/city-6.png" alt="" id="city_assistants" class="town first-line" name="assistants" data-distance="0.8">
-	</div>
-	<div class="town-wrapper">
-		<img src="img/city_security/city-7.png" alt="" id="city_security" class="town second-line" name="security" data-distance="0.6">
-	</div>
 
-	<div id="in-town" class="close">
-		<div id="mode-town">
-			<div class="controls">
-				<img src="img/exit.png" alt="Выход" class="exit"></img>
-				<img src="img/back.png" alt="Назад" class="arrow back close"></img>
-				<img src="img/back.png" alt="Назад" class="arrow next close"></img>
-			</div>
-			<div id="progress"></div>
-			<main id="game-area">
-			</main>
-		</div>
-	</div>
+	<town-wrapper v-for="town in towns" :town="town"></town-wrapper>
+	<in-town></in-town>
 </main>
-<script src="js/materials.js"></script>
-<script src="js/logic.js"></script>
+
+<script type="module">
+	Vue.component("town-wrapper", {
+		props: {
+			town: Object
+		},
+		template: `
+		<div class="town-wrapper">
+			<img :src="town.src" alt="" :id="town.id" :class="town.class" :name="town.name" :data-distance="town['data-distance']">
+		</div>
+		`
+	});
+
+	Vue.component("in-town", {
+		template: `
+			<div id="in-town" class="close">
+				<div id="mode-town">
+					<div class="controls">
+						<img src="img/exit.png" alt="Выход" class="exit">
+						<img src="img/back.png" alt="Назад" class="arrow back close">
+						<img src="img/back.png" alt="Назад" class="arrow next close">
+					</div>
+					<div id="progress"></div>
+					<main id="game-area">
+					</main>
+				</div>
+			</div>
+		`
+	});
+
+	let app = new Vue({
+		el: "#country",
+		data: {
+			towns: [
+				{
+					id: "city_friendship",
+					src: "img/city_friendship/city-1.png",
+					class: "town first-line",
+					name: "friendship",
+					'data-distance': 0.7
+				},
+				{
+					id: "city_cleanness",
+					src: "img/city_cleanness/city_cleanness.png",
+					class: "town second-line",
+					name: "cleanness",
+					'data-distance': 0.8
+				},
+				{
+					id: "city_useful-habits",
+					src: "img/city_useful-habits/city_useful-habits.png",
+					class: "town second-line",
+					name: "usefulHabits",
+					'data-distance': 0.5
+				},
+				{
+					id: "city_amazing-people",
+					src: "img/city_amazing-people/city_amazing-people.png",
+					class: "town second-line",
+					name: "amazingPeople",
+					'data-distance': 0.7
+				},
+				{
+					id: "city_self-service",
+					src: "img/city_self-service/city-5.png",
+					class: "town first-line",
+					name: "self-service",
+					'data-distance': 0.6
+				},
+				{
+					id: "city_assistants",
+					src: "img/city_assistants/city-6.png",
+					class: "town first-line",
+					name: "assistants",
+					'data-distance': 0.8
+				},
+				{
+					id: "city_security",
+					src: "img/city_security/city-7.png",
+					class: "town second-line",
+					name: "security",
+					'data-distance': 0.6
+				},
+			]
+		}
+	});
+
+	let game = new GameLogic();
+	game.initialListener();
+</script>
+
 </body>
 </html>

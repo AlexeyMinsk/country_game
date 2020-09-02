@@ -14,7 +14,6 @@ function GameLogic() {
     let movedImg = null;
     let movedImgCoords;
     let frameCoords;
-    let сellCoords = [];
     let cssSelector;
     let curentScaleHero = 1;
 
@@ -301,6 +300,3 @@ function GameLogic() {
 		}
 	}
 };
-
-let game = new GameLogic();
-game.initialListener();
