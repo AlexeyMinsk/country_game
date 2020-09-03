@@ -1108,3 +1108,7 @@ function handlerShowItems(event) {
         }
     }
 }
+
+/*
+export {materials, sound, paternPuzzle, paternPartyBoby, paternShowItems, paternWithoutInteraction,
+    paternWelcomeScreen, paternGameOver};*/

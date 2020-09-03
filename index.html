@@ -1,35 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>Country game</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="js/materials.js"></script>
-	<script src="js/logic.js"></script>
+    <title>Country game</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/materials.js"></script>
+    <script src="js/logic.js"></script>
 </head>
 <body>
 <main id="country">
-	<img src="img/hero/chipolino.png" alt="Чиполино" id="chipolino">
-
-	<town-wrapper v-for="town in towns" :town="town"></town-wrapper>
-	<in-town></in-town>
+    <hero></hero>
+    <town-wrapper v-for="town in towns" :town="town" v-model="moved" :city="city"
+                  @change-city="city = $event"></town-wrapper>
+    <in-town></in-town>
 </main>
 
-<script type="module">
-	Vue.component("town-wrapper", {
-		props: {
-			town: Object
-		},
-		template: `
-		<div class="town-wrapper">
-			<img :src="town.src" alt="" :id="town.id" :class="town.class" :name="town.name" :data-distance="town['data-distance']">
-		</div>
-		`
-	});
+<script>
+    /*	import {GameLogic} from "./js/logic.js";
+        import {materials, sound, paternPuzzle, paternPartyBoby, paternShowItems, paternWithoutInteraction,
+            paternWelcomeScreen, paternGameOver} from "./js/materials.js";*/
 
-	Vue.component("in-town", {
-		template: `
+    Vue.component("hero", {
+        template: `<img :src="src" alt="" :id="id">`,
+        data: function () {
+            return {
+                src: 'img/hero/chipolino.png',
+                id: 'chipolino',
+            }
+        }
+    });
+
+    Vue.component("town-wrapper", {
+        model: {
+            prop: 'moved',
+            event: 'moved'
+        },
+        props: {
+            town: Object,
+            moved: Boolean,
+            city: [Boolean, HTMLImageElement],
+        },
+        template: `
+            <div class="town-wrapper">
+                <img :src="town.src" alt="" :id="town.id" :class="town.class" :name="town.name"
+                     :data-distance="town['data-distance']" @click="toTown($event)" @dragstart.prevent="false">
+            </div>
+        `,
+        methods: {
+            toTown(event) {
+
+                if (this.moved || this.city === event.target)
+                    return;
+
+                if (this.city)
+                    this.city.style.zIndex = '';
+
+                //this.city = event.target;
+                event.target.style.zIndex = 0;
+                this.$emit('change-city', event.target);
+                console.log(this.city, event.target);
+                this.moveHero();
+            },
+            moveHero() {
+
+                let townCoords = this.city.getBoundingClientRect();
+
+                let heroRoad = {};
+                const step = 5;
+                //this.moved = true;
+                this.$emit('moved', true);
+                heroRoad.top = hero.getBoundingClientRect().top;
+                heroRoad.left = hero.getBoundingClientRect().left;
+
+                heroRoad.verticalDistance = heroRoad.top + hero.offsetHeight - townCoords.bottom -
+                    hero.offsetHeight / 2 * (1 - city.dataset.distance);
+                heroRoad.horizontalDistance = townCoords.left - heroRoad.left -
+                    hero.offsetWidth / 2 * (1 - city.dataset.distance);
+                let counterStep = Math.abs(heroRoad.verticalDistance) > Math.abs(heroRoad.horizontalDistance) ?
+                    heroRoad.verticalDistance / step : heroRoad.horizontalDistance / step;
+                counterStep = Math.round(Math.abs(counterStep));
+                heroRoad.verticalSpeed = heroRoad.verticalDistance / counterStep;
+                heroRoad.horizontalSpeed = heroRoad.horizontalDistance / counterStep;
+                heroRoad.stepScale = (curentScaleHero - city.dataset.distance) / counterStep;
+
+                let stop = setInterval(() => {
+                    if (!counterStep--) {//цикл закончен
+                        clearInterval(stop);
+                        //moved = false;
+                        $emit('moved', false);
+                        //curentScaleHero = +city.dataset.distance;
+                        //openTown();
+                        return;
+                    }
+
+                    heroRoad.top = heroRoad.top - heroRoad.verticalSpeed;
+                    hero.style.top = heroRoad.top + 'px';
+                    heroRoad.left = heroRoad.left + heroRoad.horizontalSpeed;
+                    hero.style.left = heroRoad.left + 'px';
+                    curentScaleHero -= heroRoad.stepScale;
+                    scaleHero(curentScaleHero, heroRoad.horizontalDistance);
+                }, 10);
+
+                function scaleHero(value, mirror) {
+                    hero.style.transform = `scale(${mirror < 0 ? -value : value},${value})`;
+                }
+            }//движение героя на главном экране
+        }
+    });
+
+    Vue.component("in-town", {
+        template: `
 			<div id="in-town" class="close">
 				<div id="mode-town">
 					<div class="controls">
@@ -43,67 +124,69 @@
 				</div>
 			</div>
 		`
-	});
+    });
 
-	let app = new Vue({
-		el: "#country",
-		data: {
-			towns: [
-				{
-					id: "city_friendship",
-					src: "img/city_friendship/city-1.png",
-					class: "town first-line",
-					name: "friendship",
-					'data-distance': 0.7
-				},
-				{
-					id: "city_cleanness",
-					src: "img/city_cleanness/city_cleanness.png",
-					class: "town second-line",
-					name: "cleanness",
-					'data-distance': 0.8
-				},
-				{
-					id: "city_useful-habits",
-					src: "img/city_useful-habits/city_useful-habits.png",
-					class: "town second-line",
-					name: "usefulHabits",
-					'data-distance': 0.5
-				},
-				{
-					id: "city_amazing-people",
-					src: "img/city_amazing-people/city_amazing-people.png",
-					class: "town second-line",
-					name: "amazingPeople",
-					'data-distance': 0.7
-				},
-				{
-					id: "city_self-service",
-					src: "img/city_self-service/city-5.png",
-					class: "town first-line",
-					name: "self-service",
-					'data-distance': 0.6
-				},
-				{
-					id: "city_assistants",
-					src: "img/city_assistants/city-6.png",
-					class: "town first-line",
-					name: "assistants",
-					'data-distance': 0.8
-				},
-				{
-					id: "city_security",
-					src: "img/city_security/city-7.png",
-					class: "town second-line",
-					name: "security",
-					'data-distance': 0.6
-				},
-			]
-		}
-	});
+    let app = new Vue({
+        el: "#country",
+        data: {
+            towns: [
+                {
+                    id: "city_friendship",
+                    src: "img/city_friendship/city-1.png",
+                    class: "town first-line",
+                    name: "friendship",
+                    'data-distance': 0.7
+                },
+                {
+                    id: "city_cleanness",
+                    src: "img/city_cleanness/city_cleanness.png",
+                    class: "town second-line",
+                    name: "cleanness",
+                    'data-distance': 0.8
+                },
+                {
+                    id: "city_useful-habits",
+                    src: "img/city_useful-habits/city_useful-habits.png",
+                    class: "town second-line",
+                    name: "usefulHabits",
+                    'data-distance': 0.5
+                },
+                {
+                    id: "city_amazing-people",
+                    src: "img/city_amazing-people/city_amazing-people.png",
+                    class: "town second-line",
+                    name: "amazingPeople",
+                    'data-distance': 0.7
+                },
+                {
+                    id: "city_self-service",
+                    src: "img/city_self-service/city-5.png",
+                    class: "town first-line",
+                    name: "self-service",
+                    'data-distance': 0.6
+                },
+                {
+                    id: "city_assistants",
+                    src: "img/city_assistants/city-6.png",
+                    class: "town first-line",
+                    name: "assistants",
+                    'data-distance': 0.8
+                },
+                {
+                    id: "city_security",
+                    src: "img/city_security/city-7.png",
+                    class: "town second-line",
+                    name: "security",
+                    'data-distance': 0.6
+                },
+            ],
+            moved: false,
+            city: false,
+        }
+    });
 
-	let game = new GameLogic();
-	game.initialListener();
+    let game = new GameLogic();
+    game.initialListener();
 </script>
 
 </body>

@@ -24,8 +24,8 @@ function GameLogic() {
         let arrows = frame.getElementsByClassName('arrow');
 
         for(let i = 0; i < towns.length; i++){
-            towns[i].addEventListener('click', toTown);
-            towns[i].ondragstart = () => false;
+            //towns[i].addEventListener('click', toTown);
+            //towns[i].ondragstart = () => false;
         }
 
         for(let i = 0; i < arrows.length; i++)
